@@ -171,9 +171,9 @@ public class ShootingAppActivity
         sensorManager.registerListener( this ,                              // Listener
                                         gravitySensor ,                     // Sensor to measure 
                                         SensorManager.SENSOR_DELAY_GAME );  // Measurement interval (microsec)
-        sensorManager.registerListener(this,
-                rotationSensor,
-                SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener( this,
+                                        rotationSensor,
+                                        SensorManager.SENSOR_DELAY_GAME);
     }
 
     /** Stops all sensing. */
@@ -301,7 +301,7 @@ public class ShootingAppActivity
         SensorManager.getOrientation(rotationMatrix, orientationValues);
 
         double azimuth = Math.toDegrees(orientationValues[0]);
-        shootingDirection = (float) azimuth + 180;
+        shootingDirection = (float) (azimuth + 360) % 360;
         shootingRegion = (int) shootingDirection / 45 + 1;
 
         // Update the GUI (at a slower rate easy for the user to see on screen)
